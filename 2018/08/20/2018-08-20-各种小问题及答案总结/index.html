@@ -1,0 +1,76 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>各种小问题及答案总结 | Tianyan</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Tianyan</a><span class="subtitle">The years shall run like rabbits, for in my arms I hold the flower of the ages, and the first love of the world.</span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>各种小问题及答案总结</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2018-08-20</div></div></div><article><div class="container post"><h3 id="获取域名的方法"><a href="#获取域名的方法" class="headerlink" title="获取域名的方法"></a>获取域名的方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//获取域名</span><br><span class="line">host = window.location.host;</span><br><span class="line">host2=document.domain;</span><br><span class="line">//获取页面完整地址</span><br><span class="line">url = window.location.href;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="js判断字符串中是否包含某个字符串"><a href="#js判断字符串中是否包含某个字符串" class="headerlink" title="js判断字符串中是否包含某个字符串"></a>js判断字符串中是否包含某个字符串</h3><ul>
+<li><p>方法一: indexOf()   (推荐)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;123&quot;;</span><br><span class="line">str.indexOf(&quot;3&quot;) // 2</span><br><span class="line">console.log(str.indexOf(&quot;3&quot;) != -1 );// true</span><br><span class="line"></span><br><span class="line">indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。如果要检索的字符串值没有出现，则该方法返回 -1。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二: search()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;123&quot;;</span><br><span class="line">str.search(&quot;3&quot;)//2</span><br><span class="line">console.log(str.search(&quot;3&quot;) != -1 );  // true</span><br><span class="line"></span><br><span class="line">search() 方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。如果没有找到任何匹配的子串，则返回 -1。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法三:match()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;123&quot;;</span><br><span class="line">var reg = RegExp(/3/);</span><br><span class="line">str.match(reg) //[&quot;3&quot;, index: 2, input: &quot;123&quot;, groups: undefined]</span><br><span class="line">if(str.match(reg))&#123;</span><br><span class="line">    // 包含</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法四:test()</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;123&quot;;</span><br><span class="line">var reg = RegExp(/3/);</span><br><span class="line"></span><br><span class="line">console.log(reg.test(str)); //true</span><br><span class="line"></span><br><span class="line">test() 方法用于检索字符串中指定的值。返回 true 或 false。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法五:exec()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var str = &quot;123&quot;;</span><br><span class="line">var reg = RegExp(/3/);</span><br><span class="line"></span><br><span class="line">reg.exec(str)//[&quot;3&quot;, index: 2, input: &quot;123&quot;, groups: undefined]</span><br><span class="line">if(reg.exec(str))&#123;</span><br><span class="line">    // 包含</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exec() 方法用于检索字符串中的正则表达式的匹配。返回一个数组，其中存放匹配的结果。如果未找到匹配，则返回值为 null。</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="csv文件转json"><a href="#csv文件转json" class="headerlink" title="csv文件转json"></a>csv文件转json</h3><ul>
+<li>PapaParse</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Papa.parse(file, &#123;</span><br><span class="line">    complete: function(results) &#123;</span><br><span class="line">      console.log(&quot;Finished:&quot;, results.data);</span><br><span class="line">      ..........</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="js字符串转数字"><a href="#js字符串转数字" class="headerlink" title="js字符串转数字"></a>js字符串转数字</h3><ul>
+<li>方法1:转换函数<ul>
+<li>parseInt()和parseFloat()两个转换函数。前者把值转换成整数，后者把值转换成浮点数。</li>
+<li>只有对String类型调用这些方法，这两个函数才能正确运行；对其他类型返回的都是NaN(Not a Number)。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>方法2:强制转换<ul>
+<li>Number(value)——把给定的值转换成数字（可以是整数或浮点数）</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>方法3:js变量弱类型转换</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">var str= &apos;012.345 &apos;;</span><br><span class="line">var x = str-0;</span><br><span class="line">x = x*1;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="js向上取整及向下取整"><a href="#js向上取整及向下取整" class="headerlink" title="js向上取整及向下取整"></a>js向上取整及向下取整</h3><ul>
+<li>向上取整<ul>
+<li>Math.ceil(x)得到大于或等于该数值的最小整数</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>向下取整<ul>
+<li>Math.floor(x)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="a去除默认样式，下划线"><a href="#a去除默认样式，下划线" class="headerlink" title="a去除默认样式，下划线"></a>a去除默认样式，下划线</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">text-decoration:none;</span><br><span class="line">outline: none;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解决High-Sierra下QQ语音时，其他程序声音变轻"><a href="#解决High-Sierra下QQ语音时，其他程序声音变轻" class="headerlink" title="解决High Sierra下QQ语音时，其他程序声音变轻"></a>解决High Sierra下QQ语音时，其他程序声音变轻</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//终端：</span><br><span class="line">xcode-select --install</span><br><span class="line">//打开QQ,不要语音,终端下输入：</span><br><span class="line">printf &quot;p *(char*)(void(*)())AudioDeviceDuck=0xc3\nq&quot; | lldb -n QQ</span><br></pre></td></tr></table></figure>
+<hr>
+<p>###</p>
+<p>###</p>
+<p>###</p>
+<p>###</p>
+<p>###</p>
+<p>###</p>
+<p>###</p>
+<p>###</p>
+<p>###</p>
+<p>###</p>
+<p>###</p>
+</div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:492230376@qq.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="https://github.com/https://github.com/tianyan89" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2018 <a href="/" rel="nofollow">Tianyan</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>
