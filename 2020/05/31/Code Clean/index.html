@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title> | Tianyan</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Tianyan</a><span class="subtitle">The years shall run like rabbits, for in my arms I hold the flower of the ages, and the first love of the world.</span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1></h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2020-05-31</div></div></div><article><div class="container post"><p>Chapter 1</p>
+<ul>
+<li>每个函数、每个类、每个模块全神贯注于一事，不受四周细节的干扰和污染</li>
+<li>尽量少的依赖关系</li>
+<li><strong><strong>减少重复代码</strong></strong></li>
+<li>对象和方法 功能不宜太多 <strong>提高表达力</strong></li>
+<li>提早构建简单抽象</li>
+</ul>
+<p>Chapter 2 有意义的命名</p>
+<ul>
+<li>避免误导<ul>
+<li>不是list类型 就不要命名为list</li>
+</ul>
+</li>
+<li>有意义的区分<ul>
+<li>accountData account 没区别</li>
+<li>customerInfo customer 没区别</li>
+</ul>
+</li>
+<li>使用能读的名称<ul>
+<li>反例：genymdhms 生成 年 月 日 时 分 秒。。。</li>
+</ul>
+</li>
+<li>使用可搜索的名称（参考：名字长短与作用域大小对应）</li>
+<li>类名 对象名：名词/名次短语</li>
+<li>方法名：动词/动词短语<ul>
+<li>参考 get set is等前缀</li>
+</ul>
+</li>
+<li><strong>一以贯之的命名法</strong>  统一格式</li>
+<li>添加有意义语境<ul>
+<li>添加统一前缀</li>
+</ul>
+</li>
+</ul>
+<p>Chapter 3 函数</p>
+<ul>
+<li><strong>短小</strong> 每个函数都只做一件事，依序把你带到下一个函数中</li>
+<li>只做一件事</li>
+<li>自顶向下读代码</li>
+<li>使用具有描述性的名称<ul>
+<li>同一模块的函数 命名方式保持一致</li>
+</ul>
+</li>
+<li>参数 <strong>尽可能少的参数</strong></li>
+<li>DRY(Don’t Repeat Yourself)</li>
+<li><strong>一开始的函数都是冗长复杂的，需要花时间再次分解 优化</strong></li>
+<li>编程艺术  将系统的股数</li>
+</ul>
+<p>Chapter 4 注释<br>若编程语言具有足够的表达力，那也许并不需要注释</p>
+<ul>
+<li>尽量用代码表达 而非注释</li>
+<li>注释不能美化糟糕的代码</li>
+<li>好的注释<ul>
+<li>法律信息</li>
+<li>对意图的解释</li>
+<li>警示 警告其他程序员会出现某种后果的注释</li>
+<li>TODO 程序员认为应该做 但是没有做的工作</li>
+<li>放大 解释不合理之物的重要性</li>
+<li>公共api的描述 <strong>注意不要误导 提供准确信息</strong></li>
+</ul>
+</li>
+</ul>
+</div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:492230376@qq.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="https://github.com/tianyan89" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2020 <a href="/" rel="nofollow">Tianyan</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>
