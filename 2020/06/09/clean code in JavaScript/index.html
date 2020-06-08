@@ -1,0 +1,147 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>clean code in JavaScript | Tianyan</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Tianyan</a><span class="subtitle">The years shall run like rabbits, for in my arms I hold the flower of the ages, and the first love of the world.</span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>clean code in JavaScript</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2020-06-09</div><div class="post-tags"><a class="post-tag-link" href="/tags/笔记/">笔记</a></div></div></div><article><div class="container post"><blockquote>
+<p> Don’t beat yourself up for first drafts that need improvement. Beat up the code instead!</p>
+</blockquote>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><ul>
+<li>可读性强的变量名<ul>
+<li>yearMonthDay ✅</li>
+<li>yyyymmdstr ❌</li>
+</ul>
+</li>
+<li>使用<strong>const</strong>定义<strong>不可变</strong>常量</li>
+<li>统一的命名风格</li>
+<li>使用 <strong>易于检索</strong> 且 <strong>易于理解</strong> 的名称<ul>
+<li>MILLISECONDS_IN_A_DAY 大写的命名常量</li>
+</ul>
+</li>
+<li>清楚直白 用location代替 l</li>
+<li>使用默认值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function createMicrobrewery(name = &apos;Hipster Brew Co.&apos;) &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>总结：变量 - <strong>可读性 易于理解 统一风格 默认值</strong></p>
+<hr>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><ul>
+<li><p>参数 (尽可能少，理想情况下应不超过 2 个)</p>
+<ul>
+<li>通常情况下，参数超过两个意味着函数功能过于复杂，需要重新优化函数</li>
+<li>参数过多时封装成对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var menuConfig = &#123;</span><br><span class="line">  title: &apos;Foo&apos;,</span><br><span class="line">  body: &apos;Bar&apos;,</span><br><span class="line">  buttonText: &apos;Baz&apos;,</span><br><span class="line">  cancellable: true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createMenu(menuConfig) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>函数功能保持单一 只做一件事</strong></p>
+</li>
+<li>函数名应明确表明其功能</li>
+<li>移除重复代码</li>
+<li>默认参数</li>
+<li>使用 Object.assign 设置默认对象<ul>
+<li>Object.assign() 方法用于将所有可枚举属性的值从一个或多个<strong>源对象</strong>复制到<strong>目标对象</strong>。它将返回目标对象。</li>
+<li>后面的参数会覆盖前面的参数</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const target = &#123; a: 1, b: 2 &#125;;</span><br><span class="line">const source = &#123; b: 4, c: 5 &#125;;</span><br><span class="line"></span><br><span class="line">##### const returnedTarget = Object.assign(target, source);</span><br><span class="line"></span><br><span class="line">console.log(target);</span><br><span class="line">// expected output: Object &#123; a: 1, b: 4, c: 5 &#125;</span><br><span class="line"></span><br><span class="line">console.log(returnedTarget);</span><br><span class="line">// expected output: Object &#123; a: 1, b: 4, c: 5 &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不要传 flag 参数，<br>通过 flag 的 true 或 false，来判断执行逻辑，违反了一个函数干一件事的原则。</li>
+<li>函数接收一个值返回一个新值，除此之外的行为我们都称之为副作用，比如修改全局变量、对文件进行 IO 操作等。<ul>
+<li>不要修改全局变量</li>
+</ul>
+</li>
+<li>对象和数组通过引用传递，在不同的方法引用同一对象时，可以先对对象进行<strong>拷贝</strong>避免产生问题</li>
+<li>函数式编程</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 学习一下</span><br><span class="line">// 累加器</span><br><span class="line">const programmerOutput = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: &apos;Uncle Bobby&apos;,</span><br><span class="line">    linesOfCode: 500</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: &apos;Suzie Q&apos;,</span><br><span class="line">    linesOfCode: 1500</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: &apos;Jimmy Gosling&apos;,</span><br><span class="line">    linesOfCode: 150</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    name: &apos;Gracie Hopper&apos;,</span><br><span class="line">    linesOfCode: 1000</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line">let totalOutput = programmerOutput</span><br><span class="line">  .map(output =&gt; output.linesOfCode)</span><br><span class="line">  .reduce((totalLines, lines) =&gt; totalLines + lines, 0)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>封装条件语句</li>
+<li>尽量别用“非”条件句</li>
+<li>避免使用条件语句 用多态来替代 extends（？）</li>
+<li>如果需要做静态类型检查，比如字符串、整数等，推荐使用 TypeScript</li>
+<li>删除弃用代码</li>
+</ul>
+<hr>
+<h4 id="对象和数据结构"><a href="#对象和数据结构" class="headerlink" title="对象和数据结构"></a>对象和数据结构</h4><ul>
+<li>用 get、set 方法操作数据</li>
+<li>使用私有变量（？）</li>
+</ul>
+<hr>
+<h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><ul>
+<li>使用class 实现继承</li>
+<li>链式调用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Car &#123;</span><br><span class="line">  constructor(make, model, color) &#123;</span><br><span class="line">    this.make = make;</span><br><span class="line">    this.model = model;</span><br><span class="line">    this.color = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setMake(make) &#123;</span><br><span class="line">    this.make = make;</span><br><span class="line">    return this;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setModel(model) &#123;</span><br><span class="line">    this.model = model;</span><br><span class="line">    return this;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setColor(color) &#123;</span><br><span class="line">    this.color = color;</span><br><span class="line">    return this;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  save() &#123;</span><br><span class="line">    console.log(this.make, this.model, this.color);</span><br><span class="line">    return this;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const car = new Car(&apos;Ford&apos;,&apos;F-150&apos;,&apos;red&apos;)</span><br><span class="line">  .setColor(&apos;pink&apos;);</span><br><span class="line">  .save();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>优先使用组合模式而非继承<ul>
+<li>继承表达的一个属于关系，而不是包含关系（？）</li>
+<li>继承关系表现为”是一个”而非”有一个”(如动物-&gt;人 和 用户-&gt;用户细节)</li>
+<li>可以复用基类的代码(“Human”可以看成是”All animal”的一种)</li>
+<li>希望当基类改变时所有派生类都受到影响(如修改”all animals”移动时的卡路里消耗量)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="SOLID"><a href="#SOLID" class="headerlink" title="SOLID"></a>SOLID</h4><p>单一功能原则、开闭原则、里氏替换原则、接口隔离原则以及依赖反转原则。</p>
+<ul>
+<li>单一功能原则 (SRP)<ul>
+<li>功能最小化 减少耦合</li>
+</ul>
+</li>
+<li>开/闭原则 (OCP)<ul>
+<li>代码实体(类，模块，函数等)应该易于扩展，难于修改</li>
+</ul>
+</li>
+<li>里氏替换原则(LSP)<ul>
+<li>子类不要去重写父类的方法</li>
+</ul>
+</li>
+<li>接口隔离原则 (ISP) ？<ul>
+<li>减少对配置参数数量的需求是有益的</li>
+</ul>
+</li>
+<li>依赖反转原则 (DIP) ？<ul>
+<li>高层次模块不能依赖低层次模块，它们依赖于抽象接口</li>
+<li>抽象接口不能依赖具体实现，具体实现依赖抽象接口</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><ul>
+<li>单一化</li>
+</ul>
+<hr>
+<h4 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h4><ul>
+<li>不再使用嵌套回调的代码 用 Promises 替代回调</li>
+<li>Async/Await 比起 Promises 更简洁（？）</li>
+</ul>
+<hr>
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><ul>
+<li>不要忽略抛异常</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">  functionThatMightThrow();</span><br><span class="line">&#125; catch (error) &#123;</span><br><span class="line">  // 这一种选择，比起 console.log 更直观</span><br><span class="line">  console.error(error);</span><br><span class="line">  // 也可以在界面上提醒用户</span><br><span class="line">  notifyUserOfError(error);</span><br><span class="line">  // 也可以把异常传回服务器</span><br><span class="line">  reportErrorToService(error);</span><br><span class="line">  // 其他的自定义方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不要忘了在 Promises 抛异常</li>
+</ul>
+<hr>
+<h4 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h4><ul>
+<li>常量大写</li>
+<li>先声明后调用</li>
+<li>调用函数的函数和被调函数应放在较近的位置</li>
+</ul>
+<hr>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>若编程语言具有足够的表达力，那也许并不需要注释</p>
+<ul>
+<li>尽量用代码表达 而非注释</li>
+<li>注释不能美化糟糕的代码</li>
+<li>警示 <strong>警告其他程序员会出现某种后果的注释</strong></li>
+<li>TODO 程序员认为应该做 但是没有做的工作</li>
+<li>放大 解释不合理之物的重要性</li>
+<li>公共api的描述 <strong>注意不要误导 提供准确信息</strong></li>
+<li>注释代码删除</li>
+</ul>
+<p>正文链接：</p>
+<ul>
+<li><a href="https://juejin.im/post/5c24b7a851882509a76875e8#heading-23" target="_blank" rel="noopener">https://juejin.im/post/5c24b7a851882509a76875e8#heading-23</a></li>
+<li><a href="https://github.com/alivebao/clean-code-js" target="_blank" rel="noopener">https://github.com/alivebao/clean-code-js</a></li>
+<li><a href="https://github.com/ryanmcdermott/clean-code-javascript" target="_blank" rel="noopener">https://github.com/ryanmcdermott/clean-code-javascript</a><br>谢谢博主分享的文章！</li>
+</ul>
+</div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:492230376@qq.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="https://github.com/tianyan89" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2020 <a href="/" rel="nofollow">Tianyan</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>
