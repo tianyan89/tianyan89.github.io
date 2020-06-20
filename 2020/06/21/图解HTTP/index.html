@@ -1,4 +1,7 @@
-<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>图解HTTP笔记 | Tianyan</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Tianyan</a><span class="subtitle">The years shall run like rabbits, for in my arms I hold the flower of the ages, and the first love of the world.</span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>图解HTTP笔记</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2020-06-21</div><div class="post-tags"><a class="post-tag-link" href="/tags/笔记/">笔记</a></div></div></div><article><div class="container post"><h3 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h3><ul>
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>图解HTTP笔记 | Tianyan</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">Tianyan</a><span class="subtitle">The years shall run like rabbits, for in my arms I hold the flower of the ages, and the first love of the world.</span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>图解HTTP笔记</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2020-06-21</div><div class="post-tags"><a class="post-tag-link" href="/tags/笔记/">笔记</a></div></div></div><article><div class="container post"><blockquote>
+<p>图片均来自《图解HTTP》作者: [日] 上野宣<br><a href="https://book.douban.com/subject/25863515/" target="_blank" rel="noopener">https://book.douban.com/subject/25863515/</a></p>
+</blockquote>
+<h3 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h3><ul>
 <li>负责传输的IP(Internet Protocol)协议<br><img src="/images/http/ip地址传输.jpeg" alt="&quot;IP地址传输&quot;"></li>
 <li>确保可靠的TCP协议<ul>
 <li>TCP协议三次握手<ul>
@@ -18,9 +21,29 @@
 <h5 id="各种协议的关系"><a href="#各种协议的关系" class="headerlink" title="各种协议的关系"></a>各种协议的关系</h5><p><img src="/images/http/各种协议的关系.jpeg" alt="&quot;各种协议的关系&quot;"></p>
 <ul>
 <li>URI 统一资源标识符 用字符串标识某一互联网资源</li>
-<li>URL 表示资源的地址</li>
+<li>URL 表示资源的地址 是URI的子集</li>
 </ul>
-<h3 id="Chapter-2"><a href="#Chapter-2" class="headerlink" title="Chapter 2"></a>Chapter 2</h3></div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:492230376@qq.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="https://github.com/tianyan89" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2020 <a href="/" rel="nofollow">Tianyan</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+<h3 id="Chapter-2"><a href="#Chapter-2" class="headerlink" title="Chapter 2"></a>Chapter 2</h3><ul>
+<li>HTTP是一种无状态协议，不对请求和响应之间的通信状态进行保存</li>
+<li>HTTP方法<ul>
+<li>GET 获取资源 用来请求已被URI识别的资源</li>
+<li>POST 传输实体主体</li>
+<li>PUT 用来传输文件 不带验证机制存在安全性问题 一般不用</li>
+<li>HEAD 获得报文头部</li>
+<li>DELETE 删除文件 与PUT相反的方法 不带验证机制 当配合验证机制或遵守REST标准时可能会开放使用</li>
+<li>OPTIONS 询问支持的方法</li>
+<li>TRACE 追踪路径 通过TRACE方法可以查询发送出去的请求是怎么被加工修改的，请求想连接到源目标服务器可能会通过代理中转，此方法用来确认连接过程中的操作</li>
+<li>CONNECT 要求用隧道协议连接代理 在与代理服务器通信时建立隧道，实现用隧道协议进行TCP通信，主要使用SSL和TLS协议把通信内容加密后经网络隧道传输<br><img src="/images/http/CONNECT方法.jpeg" alt="&quot;CONNECT方法&quot;"></li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/http/支持的方法.jpeg" alt="&quot;支持的方法&quot;"></p>
+<ul>
+<li>默认持久连接 建立一次TCP连接后进行多次请求和响应</li>
+<li>管线化 能够做到同时并行发送多个请求而不用一个接一个地等待响应</li>
+<li>使用cookie进行状态管理 Cookie会根据从服务器发送的响应报文中的Set-Cookie的首部字段信息，通知客户端保存🍪，当客户端再次发送请求时，会自动在请求报文中加🍪发送出去</li>
+</ul>
+<h3 id="Chapter-3-HTTP报文内的HTTP信息"><a href="#Chapter-3-HTTP报文内的HTTP信息" class="headerlink" title="Chapter 3 HTTP报文内的HTTP信息"></a>Chapter 3 HTTP报文内的HTTP信息</h3></div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:492230376@qq.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="https://github.com/tianyan89" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2020 <a href="/" rel="nofollow">Tianyan</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
     $(".fancybox").fancybox();
 });
 </script></body></html>
