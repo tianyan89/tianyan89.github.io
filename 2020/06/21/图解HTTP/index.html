@@ -39,11 +39,82 @@
 </ul>
 <p><img src="/images/http/支持的方法.jpeg" alt="&quot;支持的方法&quot;"></p>
 <ul>
-<li>默认持久连接 建立一次TCP连接后进行多次请求和响应</li>
+<li>默认持久连接 建立一次TCP连接后进行多次请求和响应 <strong>keep-alive</strong></li>
 <li>管线化 能够做到同时并行发送多个请求而不用一个接一个地等待响应</li>
 <li>使用cookie进行状态管理 Cookie会根据从服务器发送的响应报文中的Set-Cookie的首部字段信息，通知客户端保存🍪，当客户端再次发送请求时，会自动在请求报文中加🍪发送出去</li>
 </ul>
-<h3 id="Chapter-3-HTTP报文内的HTTP信息"><a href="#Chapter-3-HTTP报文内的HTTP信息" class="headerlink" title="Chapter 3 HTTP报文内的HTTP信息"></a>Chapter 3 HTTP报文内的HTTP信息</h3></div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:492230376@qq.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="https://github.com/tianyan89" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2020 <a href="/" rel="nofollow">Tianyan</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+<h3 id="Chapter-3-HTTP报文内的HTTP信息"><a href="#Chapter-3-HTTP报文内的HTTP信息" class="headerlink" title="Chapter 3 HTTP报文内的HTTP信息"></a>Chapter 3 HTTP报文内的HTTP信息</h3><ul>
+<li>压缩传输的内容编码 <strong>Encoding</strong><ul>
+<li>gzip、compress、deflate、identity</li>
+</ul>
+</li>
+<li>发送多种数据的多部分对象集合<ul>
+<li>multipart/form-data</li>
+<li>使用boundary来划分多部分对象集合指明的各类实体</li>
+</ul>
+</li>
+<li>指定范围发送的请求-范围请求，会用到首部字段Range来指定资源的byte范围</li>
+<li>内容协商返回最适合的内容，内容协商会以响应资源的语言、字符集、编码方式等为判别基准<ul>
+<li>Access</li>
+<li>Access-Charset</li>
+<li>Access-Encoding</li>
+<li>Access-Language</li>
+<li>Content-Language</li>
+<li>服务器驱动协商 由服务器进行内容协商</li>
+<li>客户端驱动协商</li>
+<li>透明协商 服务器和客户端结合 各自协商</li>
+</ul>
+</li>
+</ul>
+<h3 id="Chapter-4-HTTP状态码"><a href="#Chapter-4-HTTP状态码" class="headerlink" title="Chapter 4 HTTP状态码"></a>Chapter 4 HTTP状态码</h3><h4 id="状态码的类别"><a href="#状态码的类别" class="headerlink" title="状态码的类别"></a>状态码的类别</h4><p><img src="/images/http/状态码的类别.jpeg" alt="&quot;状态码的类别&quot;"></p>
+<ul>
+<li>2XX 成功！<ul>
+<li>200 OK</li>
+<li>204 No Content 一般用户客户端发送信息，而服务器端不返回信息内容时使用</li>
+<li>206 Partial Content 客户端进行范围请求，服务器端成功执行</li>
+</ul>
+</li>
+<li>3XX 重定向<ul>
+<li>301 Moved Permanently 永久性重定向 请求的资源已被永久地分配了新的URI</li>
+<li>302 Found 临时性重定向 请求的资源已被临时性地分配了新的URI</li>
+<li>303 See Other 与302有相同的功能，但明确表示客户端应使用GET方法获取资源</li>
+<li>304 Not Modified 服务器端资源未改变，可直接使用客户端未过期的缓存</li>
+<li>307 Temporary Redirect 临时重定向 临时重定向 会遵照浏览器标准不会从POST变成GET</li>
+</ul>
+</li>
+<li>4XX 客户端错误<ul>
+<li>400 Bad Request 请求报文中存在语法错误</li>
+<li>401 Unauthorized 需要认证信息</li>
+<li>403 Forbidden 拒绝客户端的资源请求，可能的原因：未获得文件系统的访问授权，访问权限出现某些问题</li>
+<li>404 Not Found 服务器端无法找到请求的资源</li>
+</ul>
+</li>
+<li>5XX 服务器错误<ul>
+<li>500 Internal Server Error 服务器端在执行请求时发生了错误</li>
+<li>503 Service Unavailable 服务器处于超负荷或正进行停机维护，现在无法处理请求</li>
+</ul>
+</li>
+</ul>
+<h3 id="Chapter-5-与HTTP协作的Web服务器"><a href="#Chapter-5-与HTTP协作的Web服务器" class="headerlink" title="Chapter 5 与HTTP协作的Web服务器"></a>Chapter 5 与HTTP协作的Web服务器</h3><ul>
+<li>代理 接收客户端发送的请求后转发给其他服务器<ul>
+<li>缓存代理 会预先将资源的副本（缓存）保存在代理服务器上，当再次收到对相同资源的请求时，就可以不从源服务器那获取资源，而将缓存资源返回</li>
+<li>透明代理 不对报文做任何加工的代理类型被称为透明代理</li>
+</ul>
+</li>
+<li>网关 可以由HTTP请求转化为其他协议通信，比如数据库、信用卡结算系统等</li>
+<li>隧道 建立通信线路，可使用SSL等加密手段通信，目的是确保客户端能与服务器进行安全通信</li>
+<li>缓存 代理服务器缓存 &amp; 客户端浏览器缓存<ul>
+<li>缓存有有限期限 过期重新请求</li>
+</ul>
+</li>
+</ul>
+<h3 id="Chapter-6-HTTP头部"><a href="#Chapter-6-HTTP头部" class="headerlink" title="Chapter 6 HTTP头部"></a>Chapter 6 HTTP头部</h3><ul>
+<li>通用首部字段 General Header Fields<br><img src="/images/http/通用首部字段.jpeg" alt="&quot;通用首部字段&quot;"></li>
+<li>请求首部字段 Request Header Fields<br><img src="/images/http/请求首部字段.jpeg" alt="&quot;请求首部字段&quot;"></li>
+<li>响应首部字段 Response Header Fields<br><img src="/images/http/响应首部字段.jpeg" alt="&quot;响应首部字段&quot;"></li>
+<li>实体首部字段 Entity Header Fields<br><img src="/images/http/实体首部字段.jpeg" alt="&quot;实体首部字段&quot;"></li>
+</ul>
+</div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:492230376@qq.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="https://github.com/tianyan89" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2020 <a href="/" rel="nofollow">Tianyan</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
     $(".fancybox").fancybox();
 });
 </script></body></html>
